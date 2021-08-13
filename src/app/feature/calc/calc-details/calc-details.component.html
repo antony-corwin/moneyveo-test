@@ -1,0 +1,56 @@
+<section class="flip-card">
+
+  <mat-card [ngClass]="{'flipped': cardFlipped}" class="details">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+
+
+        <div class="details--return-to">
+          <span>Возврат до : </span><span>{{localState.returnDate | date : 'cccccc, dd.MM.yyyy' : '' : 'ru'}}</span>
+        </div>
+        <div class="details--credit">
+          <span>Кредит : </span><span>{{localState.amount | number : '1.2'}}</span>
+        </div>
+        <div class="details--percent">
+          <span>Проценты, грн : </span><span>{{localState.percent | number : '1.2'}}</span>
+        </div>
+
+        <div class="details--divider">
+
+        </div>
+        <div class="details--total-amount">
+          <span>Всего к возврату : </span><span><b>{{localState.regularPaymentAmount | number : '1.2'}}</b></span>
+        </div>
+        <div class="details--promo-code">
+          <input type="text" matInput placeholder="промокод / enotcoin">
+        </div>
+
+      </div>
+
+      <div class="flip-card-back">
+
+
+        <div class="details--return-date">
+          <span>Вернуть : {{localState.totalAmount | number : '1.2'}} грн </span><span> до {{localState.returnDate | date : 'dd.MM.yyyy'}}</span>
+        </div>
+        <div class="details--credit">
+          <span>Кредит : </span><span>{{localState.amount | number : '1.2'}}</span>
+        </div>
+        <div class="details--percent">
+          <span>Платежей : </span><span>{{localState.amountOfPayments}}</span>
+        </div>
+
+        <div class="details--divider"></div>
+
+        <div class="details--total-amount">
+          <span>Платеж раз в две недели: </span><span><b>{{ localState.regularPaymentAmount | number : '1.2'}}</b></span>
+        </div>
+        <p class="details--description">
+          При займе от 15 000 грн сроки погашения увеличиваются от 8 недель, а выплаты производятся раз в две недели
+        </p>
+
+      </div>
+    </div>
+  </mat-card>
+
+</section>

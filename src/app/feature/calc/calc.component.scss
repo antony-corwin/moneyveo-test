@@ -1,0 +1,11 @@
+.calc-container {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  gap: 1rem;
+  background: transparent;
+
+  @media (min-width: 1280px) {
+    flex-direction: row;
+  }
+}
