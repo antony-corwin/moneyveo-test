@@ -1,12 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomDate } from './helpers/custom-date';
+import { SliderComponent } from './components/slider/slider.component';
+import { FormsModule } from "@angular/forms";
+import { MatSliderModule } from "@angular/material/slider";
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    SliderComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    MatSliderModule
+  ],
+  exports: [
+    SliderComponent
   ],
   providers: [
     CustomDate

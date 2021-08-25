@@ -1,0 +1,36 @@
+<div class="slider">
+  <div class="slider__input">
+
+    <div class="slider__input__left">
+      <mat-slider #left
+                  (input)="onChange($event)"
+                  [(ngModel)]="sliderValue"
+                  [min]="sliderConfig.left.min"
+                  [max]="sliderConfig.left.max + 1"
+                  [step]="sliderConfig.left.step"
+                  [disabled]="sliderValue > sliderConfig.left.max
+                  && sliderValue !== sliderConfig.right.min - 1">
+      </mat-slider>
+      <div class="slider__label slider__label__bottom">
+        <span>{{sliderConfig.left.labelMin}}</span>
+        <span>{{sliderConfig.left.labelMax}}</span>
+      </div>
+    </div>
+
+    <div class="slider__input__right">
+      <mat-slider #right
+                  (input)="onChange($event)"
+                  [(ngModel)]="sliderValue"
+                  [min]="sliderConfig.right.min - 1"
+                  [max]="sliderConfig.right.max"
+                  [step]="sliderConfig.right.step"
+                  [disabled]="sliderValue < sliderConfig.right.min">
+      </mat-slider>
+      <div class="slider__label slider__label__top">
+        <span>{{sliderConfig.right.labelMin}}</span>
+        <span>{{sliderConfig.right.labelMax}}</span>
+      </div>
+    </div>
+
+  </div>
+</div>

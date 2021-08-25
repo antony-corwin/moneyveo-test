@@ -1,6 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
-html, body { height: 100%; box-sizing: border-box; }
-body { margin: 0; font-family: Gilroy, Roboto, "Helvetica Neue", sans-serif; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: Gilroy, Roboto, "Helvetica Neue", sans-serif;
+}
 
 @font-face {
   font-family: 'Gilroy';

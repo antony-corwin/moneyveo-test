@@ -1,141 +1,65 @@
-
-  <mat-card class="controls">
-
-    <div *ngIf="showPdlControl" class="controls--amount">
-      <div class="controls--amount__input__container">
-        <span class="controls--amount__label">Сумма : </span>
-        <mat-form-field class="controls--amount__input">
-          <input [(ngModel)]="amount.value" (ngModelChange)="updateTerm(amount.value)" type="number"
-                 matInput>
-        </mat-form-field>
-        <span class="controls--amount__label-currency"> грн</span>
-      </div>
-
-
-      <div class="controls--amount__container">
-        <mat-slider #amount
-                    class="controls--amount__slider"
-                    [(ngModel)]="localState.amount"
-                    [min]="PdlAmountControl.min" [max]="PdlAmountControl.max"
-                    [step]="PdlAmountControl.step"
-                    (change)="onChanges('amount', amount.value)"
-                    (ngModelChange)="updateTerm(amount.value)">
-        </mat-slider>
-        <div class="controls--amount__slider__labels-left">
-          <span>{{PdlAmountControl.min}}</span>
-          <span>{{PdlAmountControl.max - 1}}</span>
-        </div>
-        <div class="controls--amount__fake-control-right">
-          <div class="controls--amount__fake-control__labels">
-            <span>{{InstallmentAmountControl.min + 1}}</span>
-            <span>{{InstallmentAmountControl.max}}</span>
-          </div>
-          <div class="controls--amount__fake-control__ticks-right"></div>
-        </div>
-      </div>
+<section class="controls">
+  <mat-card>
+    <div class="controls--amount__input__container">
+      <span class="controls--amount__label">Сумма : </span>
+      <mat-form-field class="controls--amount__input">
+        <input [(ngModel)]="localState.amount"
+               (input)="onAmountChange($event)"
+               matInput
+               [min]="amountSliderConfig.left.min"
+               [max]="amountSliderConfig.right.max"
+               type="number">
+      </mat-form-field>
+      <span class="controls--amount__label-currency"> грн</span>
     </div>
 
-    <div *ngIf="!showPdlControl" class="controls--amount">
-      <div class="controls--amount__input__container">
-        <span class="controls--amount__label">Сумма : </span>
-        <mat-form-field class="controls--amount__input">
-          <input [(ngModel)]="amount.value" (ngModelChange)="updateTerm(amount.value)" type="number"
-                 matInput>
-        </mat-form-field>
-        <span class="controls--amount__label-currency"> грн</span>
-      </div>
+    <app-slider [sliderConfig]="amountSliderConfig" [sliderValue]="localState.amount" (returnValueEvent)="onChanges('amount', $event)"></app-slider>
 
-      <div class="controls--amount__container">
-        <div class="controls--amount__fake-control-left">
-          <div class="controls--amount__fake-control__ticks-left"></div>
-          <div class="controls--amount__fake-control__labels">
-            <span>50</span>
-            <span>14999</span>
-          </div>
-        </div>
-        <mat-slider #amount
-                    class="controls--amount__slider"
-                    [(ngModel)]="localState.amount"
-                    [min]="InstallmentAmountControl.min" [max]="InstallmentAmountControl.max"
-                    [step]="InstallmentAmountControl.step"
-                    (change)="onChanges('amount', amount.value)"
-                    (ngModelChange)="updateTerm(amount.value)">
-        </mat-slider>
-        <div class="controls--amount__slider__labels-right">
-          <span>15000</span>
-          <span>30000</span>
-        </div>
-      </div>
-    </div>
-<!-------------------------------------------------------------->
-    <div *ngIf="showPdlControl" class="controls--term">
-      <div class="controls--term__input__container">
-        <span class="controls--term__label">Срок : </span>
-        <mat-form-field class="controls--term__input">
-          <input [(ngModel)]="term.value" (ngModelChange)="updateAmount(term.value)" type="number"
-                 matInput>
-        </mat-form-field>
-        <span *ngIf="term.value === 1 || term.value === 21 || term.value === 31" class="controls--term__label-currency"> день</span>
-        <span *ngIf="term.value === 2 || term.value === 3 || term.value === 4 || term.value === 22 || term.value === 23 || term.value === 24" class="controls--term__label-currency"> дня</span>
-        <span *ngIf="term.value >= 5 && !(term.value === 21 || term.value === 22 || term.value === 23 || term.value === 24 || term.value === 31)" class="controls--term__label-currency"> дней</span>
-      </div>
-
-
-      <div class="controls--term__container">
-        <mat-slider #term
-                    class="controls--term__slider"
-                    [(ngModel)]="localState.term"
-                    [min]="PdlTermControl.min" [max]="PdlTermControl.max"
-                    [step]="PdlTermControl.step"
-                    (change)="onChanges('term', term.value)"
-                    (ngModelChange)="updateAmount(term.value)">
-        </mat-slider>
-        <div class="controls--term__slider__labels-left">
-          <span>{{PdlTermControl.min}}</span>
-          <span>{{PdlTermControl.max - 1}}</span>
-        </div>
-        <div class="controls--term__fake-control-right">
-          <div class="controls--term__fake-control__labels">
-            <span>{{(InstallmentTermControl.min + 1) / 7 }}</span>
-            <span>{{InstallmentTermControl.max / 7}}</span>
-          </div>
-          <div class="controls--term__fake-control__ticks-right"></div>
-        </div>
-      </div>
+    <div *ngIf="localState.term < termSliderConfig.right.min || localState.term === null" class="controls--term__input__container">
+      <span class="controls--term__label">Срок : </span>
+      <mat-form-field class="controls--term__input">
+        <input [(ngModel)]="dayTerm"
+               (input)="onDayChange($event)"
+               matInput
+               [min]="termSliderConfig.left.min"
+               [max]="termSliderConfig.left.max"
+               type="number">
+      </mat-form-field>
+      <span *ngIf="localState.term === 1 ||
+      localState.term === 21 ||
+      localState.term === 31"
+            class="controls--term__label-currency"> день</span>
+      <span
+        *ngIf="localState.term === 2 ||
+        localState.term === 3 ||
+        localState.term === 4 ||
+        localState.term === 22 ||
+        localState.term === 23 ||
+        localState.term === 24"
+        class="controls--term__label-currency"> дня</span>
+      <span
+        *ngIf="localState.term >= 5 &&
+        !(localState.term === 21 ||
+        localState.term === 22 ||
+        localState.term === 23 ||
+        localState.term === 24 ||
+        localState.term === 31)"
+        class="controls--term__label-currency"> дней</span>
     </div>
 
-    <div *ngIf="!showPdlControl" class="controls--term">
-      <div class="controls--term__input__container">
-        <span class="controls--term__label">Срок : </span>
-        <mat-form-field class="controls--term__input">
-          <input [ngModel]="getTerm(term.value)" (ngModelChange)="updateAmount(term.value)" type="number"
-                 matInput>
-        </mat-form-field>
-        <span class="controls--term__label-currency"> недель</span>
-      </div>
-
-      <div class="controls--term__container">
-        <div class="controls--term__fake-control-left">
-          <div class="controls--term__fake-control__ticks-left"></div>
-          <div class="controls--term__fake-control__labels">
-            <span>{{PdlTermControl.min}}</span>
-            <span>{{PdlTermControl.max - 1}}</span>
-          </div>
-        </div>
-        <mat-slider #term
-                    class="controls--amount__slider"
-                    [(ngModel)]="localState.term"
-                    [min]="InstallmentTermControl.min" [max]="InstallmentTermControl.max"
-                    [step]="InstallmentTermControl.step"
-                    (change)="onChanges('term', term.value)"
-                    (ngModelChange)="updateAmount(term.value)">
-        </mat-slider>
-        <div class="controls--amount__slider__labels-right">
-          <span>{{(InstallmentTermControl.min + 1) / 7 }}</span>
-          <span>{{InstallmentTermControl.max / 7}}</span>
-        </div>
-      </div>
+    <div *ngIf="localState.term >= termSliderConfig.right.min || localState.term === null" class="controls--term__input__container">
+      <span class="controls--term__label">Срок : </span>
+      <mat-form-field class="controls--term__input">
+        <input [(ngModel)]="weekTerm"
+               (change)="onWeekChange($event)"
+               matInput
+               type="number">
+      </mat-form-field>
+      <span class="controls--term__label-currency"> недель</span>
     </div>
 
-    <button class="controls--submit-btn" type="submit" mat-button>Оформить кредит {{localState.totalAmount}} грн</button>
+    <app-slider [sliderConfig]="termSliderConfig" [sliderValue]="localState.term" (returnValueEvent)="onChanges('term', $event)"></app-slider>
+
+    <button class="controls__submit-btn" mat-button type="submit">Оформить кредит {{localState.totalAmount}}грн</button>
   </mat-card>
+</section>

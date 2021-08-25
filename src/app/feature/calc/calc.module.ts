@@ -11,6 +11,8 @@ import { MatInputModule } from "@angular/material/input";
 import { MatDividerModule } from "@angular/material/divider";
 import { FormsModule } from "@angular/forms";
 import localeRu from '@angular/common/locales/ru';
+import { SharedModule } from "../../shared/shared.module";
+
 registerLocaleData(localeRu, 'ru');
 
 @NgModule({
@@ -29,10 +31,11 @@ registerLocaleData(localeRu, 'ru');
     MatSliderModule,
     MatInputModule,
     MatDividerModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'ru' }
+    {provide: LOCALE_ID, useValue: 'ru'}
   ]
 })
 export class CalcModule {

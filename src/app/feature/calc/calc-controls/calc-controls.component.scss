@@ -1,65 +1,31 @@
-/* Chrome, Safari, Edge, Opera */
+/* disable number input controls */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
 }
 
-::ng-deep .mat-accent .mat-slider-track-fill {
-  background: linear-gradient(90deg, #3DAE2B 0%, #29999F 100%);
-}
-
-::ng-deep .mat-slider-wrapper {
-  height: 4px !important;
-}
-
-::ng-deep .mat-slider-horizontal .mat-slider-track-wrapper {
-  height: 4px !important;
-}
-
-::ng-deep .mat-slider-horizontal .mat-slider-ticks-container {
-  height: 4px !important;
-}
-
-::ng-deep .mat-slider-horizontal .mat-slider-track-background {
-  height: 4px !important;
-  background: #3DAE2B;
-  opacity: 0.2;
-}
-
-::ng-deep .mat-slider-horizontal .mat-slider-track-fill {
-  height: 4px !important;
-}
-
-
-::ng-deep .mat-accent .mat-slider-thumb {
-  width: 20px;
-  height: 20px;
-  background: #fff;
-  border: 2px solid #3DAE2B;
-}
-
-::ng-deep .mat-slider:hover .mat-slider-track-background {
-  background: #3DAE2B;
-  opacity: 0.2;;
-}
-
-::ng-deep .mat-slider-min-value:not(.mat-slider-thumb-label-showing) .mat-slider-thumb {
-  background: #fff;
-}
-
 .controls {
-  width: 539px;
-  height: 292px;
-  padding: 25px 44px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.25);
+  min-height: 150px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+
+  mat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__submit-btn {
+    margin-top: 2rem;
+    align-self: center;
+    color: #fff;
+    background: linear-gradient(90deg, #915FFF 0%, #6E36EA 100%);
+  }
 
   &--amount {
     display: flex;
@@ -67,11 +33,11 @@ input[type=number] {
     position: relative;
 
     &__label {
-      font-size: 18px;
+
       line-height: 21px;
 
       &-currency {
-        font-size: 16px;
+
         line-height: 19px;
         font-weight: bold;
       }
@@ -84,7 +50,7 @@ input[type=number] {
 
       input {
         font-family: Gilroy, sans-serif;
-        font-size: 16px;
+
         font-weight: bold;
         line-height: 19px;
         display: flex;
@@ -95,6 +61,7 @@ input[type=number] {
 
       &__container {
         margin-bottom: -20px;
+        width: 100%;
       }
     }
 
@@ -102,108 +69,6 @@ input[type=number] {
       display: flex;
     }
 
-    &__slider {
-      width: 100%;
-
-      &__labels {
-
-        &-left {
-          position: absolute;
-          width: 50%;
-          font-size: 12px;
-          line-height: 14px;
-          display: flex;
-          justify-content: space-between;
-          margin-top: 32px;
-        }
-
-        &-right {
-          position: absolute;
-          width: 50%;
-          font-size: 12px;
-          line-height: 14px;
-          display: flex;
-          justify-content: space-between;
-          margin-left: 50%;
-        }
-      }
-    }
-
-    &__slider {
-
-      ::ng-deep .mat-slider-wrapper:before {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 10px;
-        height: 4px;
-        background: #3DAE2B;
-        left: -10px;
-        border-top-left-radius: 2px;
-        border-bottom-left-radius: 2px;
-      }
-
-      ::ng-deep .mat-slider-wrapper:after {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 8px;
-        height: 4px;
-        background: #3DAE2B;
-        opacity: 0.2;
-        right: -8px;
-      }
-    }
-
-    &__fake-control {
-
-      &-left {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        margin-top: 23px;
-      }
-
-      &-right {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        margin-top: 5px;
-      }
-
-      &__labels {
-
-        display: flex;
-        justify-content: space-between;
-        font-size: 12px;
-        line-height: 14px;
-        text-align: right;
-        color: #828282;
-      }
-
-      &__ticks {
-
-        &-left {
-          margin-bottom: 4px;
-          width: 100%;
-          font-size: 12px;
-          line-height: 14px;
-          height: 4px;
-          background: #915FFF;
-          opacity: 0.2;
-        }
-
-        &-right {
-          margin-top: 4px;
-          width: 100%;
-          font-size: 12px;
-          line-height: 14px;
-          height: 4px;
-          background: #915FFF;
-          opacity: 0.2;
-        }
-      }
-    }
   }
 
   &--term {
@@ -212,11 +77,11 @@ input[type=number] {
     position: relative;
 
     &__label {
-      font-size: 18px;
+
       line-height: 21px;
 
       &-currency {
-        font-size: 16px;
+
         line-height: 19px;
         font-weight: bold;
       }
@@ -224,12 +89,12 @@ input[type=number] {
 
     &__input {
       width: 35px;
-      font-size: 16px;
+
       line-height: 19px;
 
       input {
         font-family: Gilroy, sans-serif;
-        font-size: 16px;
+
         font-weight: bold;
         line-height: 19px;
         display: flex;
@@ -240,122 +105,16 @@ input[type=number] {
 
       &__container {
         margin-bottom: -20px;
+        width: 100%;
       }
     }
 
     &__container {
       display: flex;
     }
-
-    &__slider {
-      width: 100%;
-
-      &__labels {
-
-        &-left {
-          position: absolute;
-          width: 50%;
-          font-size: 12px;
-          line-height: 14px;
-          display: flex;
-          justify-content: space-between;
-          margin-top: 32px;
-        }
-
-        &-right {
-          position: absolute;
-          width: 50%;
-          font-size: 12px;
-          line-height: 14px;
-          display: flex;
-          justify-content: space-between;
-          margin-left: 50%;
-        }
-      }
-    }
-
-    &__slider {
-
-      ::ng-deep .mat-slider-wrapper:before {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 10px;
-        height: 4px;
-        background: #3DAE2B;
-        left: -10px;
-        border-top-left-radius: 2px;
-        border-bottom-left-radius: 2px;
-      }
-
-      ::ng-deep .mat-slider-wrapper:after {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 8px;
-        height: 4px;
-        background: #3DAE2B;
-        opacity: 0.2;
-        right: -8px;
-      }
-    }
-
-    &__fake-control {
-
-      &-left {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        margin-top: 23px;
-      }
-
-      &-right {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        margin-top: 5px;
-      }
-
-      &__labels {
-
-        display: flex;
-        justify-content: space-between;
-        font-size: 12px;
-        line-height: 14px;
-        text-align: right;
-        color: #828282;
-      }
-
-      &__ticks {
-
-        &-left {
-          margin-bottom: 4px;
-          width: 100%;
-          font-size: 12px;
-          line-height: 14px;
-          height: 4px;
-          background: #915FFF;
-          opacity: 0.2;
-        }
-
-        &-right {
-          margin-top: 4px;
-          width: 100%;
-          font-size: 12px;
-          line-height: 14px;
-          height: 4px;
-          background: #915FFF;
-          opacity: 0.2;
-        }
-      }
-    }
   }
 
-  &--submit-btn {
-    margin-top: 40px;
-    color: #fff;
-    background: linear-gradient(90deg, #915FFF 0%, #6E36EA 100%);
-  }
+
 }
 
 

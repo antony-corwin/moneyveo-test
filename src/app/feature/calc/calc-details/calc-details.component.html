@@ -5,24 +5,24 @@
       <div class="flip-card-front">
 
 
-        <div class="details--return-to">
+        <div class="details__item details--return-to">
           <span>Возврат до : </span><span>{{localState.returnDate | date : 'cccccc, dd.MM.yyyy' : '' : 'ru'}}</span>
         </div>
-        <div class="details--credit">
+        <div class="details__item details--credit">
           <span>Кредит : </span><span>{{localState.amount | number : '1.2'}}</span>
         </div>
-        <div class="details--percent">
+        <div class="details__item details--percent">
           <span>Проценты, грн : </span><span>{{localState.percent | number : '1.2'}}</span>
         </div>
 
-        <div class="details--divider">
+        <div class="details__item details--divider">
 
         </div>
-        <div class="details--total-amount">
-          <span>Всего к возврату : </span><span><b>{{localState.regularPaymentAmount | number : '1.2'}}</b></span>
+        <div class="details__item details--total-amount">
+          <span>Всего к возврату : </span><span><b>{{localState.totalAmount | number : '1.2'}}</b></span>
         </div>
         <div class="details--promo-code">
-          <input type="text" matInput placeholder="промокод / enotcoin">
+          <input matInput placeholder="промокод / enotcoin" type="text">
         </div>
 
       </div>
@@ -30,19 +30,20 @@
       <div class="flip-card-back">
 
 
-        <div class="details--return-date">
-          <span>Вернуть : {{localState.totalAmount | number : '1.2'}} грн </span><span> до {{localState.returnDate | date : 'dd.MM.yyyy'}}</span>
+        <div class="details__item details--return-date">
+          <span>Вернуть : {{localState.totalAmount | number : '1.2'}}
+            грн </span><span> до {{localState.returnDate | date : 'dd.MM.yyyy'}}</span>
         </div>
-        <div class="details--credit">
+        <div class="details__item details--credit">
           <span>Кредит : </span><span>{{localState.amount | number : '1.2'}}</span>
         </div>
-        <div class="details--percent">
+        <div class="details__item details--percent">
           <span>Платежей : </span><span>{{localState.amountOfPayments}}</span>
         </div>
 
-        <div class="details--divider"></div>
+        <div class="details__item details--divider"></div>
 
-        <div class="details--total-amount">
+        <div class="details__item details--total-amount">
           <span>Платеж раз в две недели: </span><span><b>{{ localState.regularPaymentAmount | number : '1.2'}}</b></span>
         </div>
         <p class="details--description">

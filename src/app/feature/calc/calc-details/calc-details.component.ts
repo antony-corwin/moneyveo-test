@@ -10,15 +10,6 @@ export class CalcDetailsComponent implements OnInit {
 
   @Input() cardFlipped: boolean = false;
 
-  // public details: {
-  //   returnDate: Date;
-  //   amount: number;
-  //   percent: number;
-  //   totalAmount: number;
-  //   amountOfPayments: number;
-  //   promoCode: string;
-  // }
-
   public localState: {
     amount: 5000,
     amountOfPayments: 5,
